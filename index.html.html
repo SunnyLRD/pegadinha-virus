@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>⚠ VÍRUS DETECTADO</title>
+<style>
+:root{
+  --bg:#eef6f2;--ink:#10241c;--muted:#456154;--accent:#0a7d4f;--line:#b9d3c5;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a14;--ink:#e4f2ea;--muted:#9bb8a9;--accent:#4fd69a;--line:#27443a}}
+:root[data-theme="dark"]{--bg:#0d1a14;--ink:#e4f2ea;--muted:#9bb8a9;--accent:#4fd69a;--line:#27443a}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+
+/* FASE 1: susto */
+#scare{position:fixed;inset:0;z-index:10;background:#000;color:#ff2a2a;font-family:"Courier New",Courier,monospace;
+  padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));
+  display:flex;flex-direction:column;gap:14px;overflow:hidden;animation:pulse .6s steps(2) infinite}
+@keyframes pulse{0%{box-shadow:inset 0 0 0 6px #ff0000}50%{box-shadow:inset 0 0 0 6px #5a0000}}
+@keyframes glitch{0%,100%{transform:translate(0)}20%{transform:translate(-3px,1px)}40%{transform:translate(3px,-2px)}60%{transform:translate(-2px,-1px)}80%{transform:translate(2px,2px)}}
+#scare h1{margin:6px 0 0;font-size:clamp(34px,11vw,72px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;
+  text-shadow:2px 0 #00e5ff,-2px 0 #ff00c8;animation:glitch .35s infinite}
+#scare .sub{margin:0;font-size:clamp(15px,4vw,20px);color:#ffb3b3}
+#log{flex:1;margin:0;padding:0;list-style:none;font-size:clamp(12px,3.4vw,15px);line-height:1.5;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;color:#ff6a6a}
+#log li:last-child{color:#fff}
+.bar{border:2px solid #ff2a2a;height:26px;position:relative}
+.bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,#ff2a2a 0 10px,#a00 10px 14px)}
+.pct{display:flex;justify-content:space-between;font-size:14px;color:#ff9a9a}
+@media (prefers-reduced-motion:reduce){#scare,#scare h1{animation:none}}
+
+/* FASE 2: alívio */
+#safe{display:none;max-width:680px;margin:0 auto;padding:40px 22px 64px}
+body.revealed #scare{display:none}
+body.revealed #safe{display:block}
+#safe h1{font-size:clamp(34px,9vw,56px);line-height:1.05;margin:0 0 18px;letter-spacing:-.02em}
+#safe .lead{font-size:20px;margin:0 0 14px}
+#safe .note{color:var(--muted);margin:0 0 36px;font-size:17px}
+#safe h2{font-size:26px;margin:0 0 18px}
+#safe ul{list-style:none;margin:0;padding:0}
+#safe li{border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 20px}
+#safe li b{display:block;font-size:19px}
+#safe li span{color:var(--muted);font-size:17px}
+#safe footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+
+<main id="scare" aria-live="polite">
+  <h1>⚠ Vírus detectado</h1>
+  <p class="sub">Seu dispositivo foi infectado. Não feche esta página.</p>
+  <ul id="log"></ul>
+  <div>
+    <div class="pct"><span id="status">Infectando arquivos…</span><span id="pct">0%</span></div>
+    <div class="bar"><i id="fill"></i></div>
+  </div>
+</main>
+
+<article id="safe">
+  <h1>Calma. Foi só uma pegadinha.</h1>
+  <p class="lead">Eu avisei: não confie em QR codes aleatórios nem abra links estranhos.</p>
+  <p class="note">Nenhum vírus foi instalado e esta página não acessou nada do seu celular. Mas, se fosse um golpe de verdade, você teria caído no momento em que escaneou. Quer se proteger? Aqui vão algumas dicas.</p>
+
+  <h2>Como não cair nessa</h2>
+  <ul>
+    <li><b>QR code é só um link disfarçado.</b><span>Se você não sabe quem colocou ou enviou, não escaneie.</span></li>
+    <li><b>Confira o endereço antes de abrir.</b><span>A câmera mostra o link antes de abrir. Se o endereço parecer estranho ou não tiver nada a ver com o assunto, feche.</span></li>
+    <li><b>Cuidado com QR code colado por cima de outro.</b><span>Golpistas colam adesivos em cardápios, parquímetros e postes. Se parece um adesivo sobreposto, não use.</span></li>
+    <li><b>Desconfie de pressa e susto.</b><span>“Vírus detectado”, “conta bloqueada”, “você ganhou um prêmio”. É truque para você agir sem pensar. Navegador de verdade não avisa de vírus desse jeito.</span></li>
+    <li><b>Não digite senha, CPF ou cartão em páginas abertas por QR code.</b><span>Se precisar entrar numa conta, abra o app ou o site oficial por conta própria.</span></li>
+    <li><b>Ative a verificação em duas etapas.</b><span>Assim, mesmo que uma senha vaze, a conta ainda fica protegida.</span></li>
+    <li><b>Mantenha o celular atualizado.</b><span>As atualizações corrigem falhas que golpes costumam explorar.</span></li>
+    <li><b>Se caiu num golpe de verdade:</b><span>troque as senhas, avise o banco e acompanhe a movimentação das contas.</span></li>
+  </ul>
+
+  <footer>Foi só uma brincadeira para conscientizar. Compartilhe com quem ainda escaneia tudo que vê pela frente.</footer>
+</article>
+
+<script>
+(function(){
+  var lines=[
+    "> iniciando varredura do dispositivo…",
+    "> ALERTA: 47 ameaças encontradas",
+    "> Trojan.QR/Pegadinha.A ........ INFECTADO",
+    "> lendo galeria de fotos ........ OK",
+    "> acessando contatos ............ OK",
+    "> copiando mensagens ............ OK",
+    "> Worm.Link.Estranho ............ INFECTADO",
+    "> desativando antivírus ......... FALHOU",
+    "> enviando dados ao servidor ....",
+    "> ERRO CRÍTICO: você escaneou um QR code aleatório"
+  ];
+  var log=document.getElementById("log"),fill=document.getElementById("fill"),pct=document.getElementById("pct"),status=document.getElementById("status");
+  var started=Date.now(),done=false,p=0,li=0;
+
+  function reveal(){
+    if(done)return;done=true;
+    document.body.classList.add("revealed");
+    document.title="Foi só uma pegadinha";
+    window.scrollTo(0,0);
+  }
+  function addLine(){
+    if(li>=lines.length){li=2}
+    var el=document.createElement("li");el.textContent=lines[li++];log.appendChild(el);
+    while(log.children.length>14)log.removeChild(log.firstChild);
+  }
+  addLine();
+  var lt=setInterval(addLine,520);
+  var pt=setInterval(function(){
+    p=Math.min(100,p+Math.random()*(p>80?1.2:3.2));
+    fill.style.width=p+"%";pct.textContent=Math.floor(p)+"%";
+    if(p>=100){
+      status.textContent="Infecção concluída";
+      clearInterval(pt);clearInterval(lt);
+      setTimeout(reveal,700);
+    }
+  },110);
+  document.addEventListener("click",function(){if(Date.now()-started>4000)reveal()});
+})();
+</script>
+</body>
+</html>
